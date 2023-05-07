@@ -7,7 +7,8 @@ function M:detect()
 	local output = assert(file:read('*all'))
 	file:close()
 
-	print(output)
+	local result = output:match('AppsUseLightTheme%s+REG_DWORD%s+0x(%d+)')
+	print(result)
 end
 
 return M
