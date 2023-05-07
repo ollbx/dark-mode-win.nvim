@@ -36,14 +36,14 @@ end
 
 function M:is_light()
 	if detect_result == nil then
-		self:detect()
+		M:detect()
 	end
 
 	return detect_result
 end
 
 function M:is_dark()
-	return not self:is_light()
+	return not M:is_light()
 end
 
 return M
