@@ -30,10 +30,12 @@ local function detect_impl()
 	return (value == '1')
 end
 
+-- Updates the cached detection result.
 function M:detect()
 	detect_result = detect_impl()
 end
 
+-- Returns true if the light theme has been detected.
 function M:is_light()
 	if detect_result == nil then
 		M:detect()
@@ -42,8 +44,17 @@ function M:is_light()
 	return detect_result
 end
 
+-- Returns true if the dark theme has been detected.
 function M:is_dark()
 	return not M:is_light()
+end
+
+-- Returns a string "light" or "dark" depending on the detected theme.
+function M:theme()
+	if M:is_light() then
+		return "light"
+	end
+	return "dark"
 end
 
 return M
