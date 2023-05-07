@@ -1,6 +1,7 @@
 local M = {}
+local detect_result = nil
 
-function M:is_light()
+local function detect_impl()
 	if not vim.loop.os_uname().version:match("Windows") then
 		return true -- On non-Windows just always say true.
 	end
@@ -26,7 +27,19 @@ function M:is_light()
 		return true
 	end
 
-	return value == '1'
+	return (value == '1')
+end
+
+function M:detect()
+	detect_result = detect_impl()
+end
+
+function M:is_light()
+	if detect_result == nil then
+		self:detect()
+	end
+
+	return detect_result
 end
 
 function M:is_dark()
