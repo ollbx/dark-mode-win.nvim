@@ -24,4 +24,4 @@ The result of the detection is cached, but can be updated by calling `detect()`.
 | `is_dark()`  | Returns true when the dark theme is active. |
 | `is_light()` | Returns true when the light theme is active. |
 | `detect()`   | Updates the cached result of the detection. |
-| `theme()`    | Return "dark" or "light" as a string. |
+| `theme()`    | Returns "dark" or "light" as a string. |
