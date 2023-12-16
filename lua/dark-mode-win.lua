@@ -3,7 +3,7 @@ local detect_result = nil
 
 local function detect_impl()
 	if not vim.loop.os_uname().version:match("Windows") then
-		return true -- On non-Windows just always say true.
+		return nil
 	end
 
 	local cmd = 'reg query HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize /v AppsUseLightTheme'
@@ -18,13 +18,13 @@ local function detect_impl()
 	file:close()
 
 	if output == nil then
-		return true
+		return nil
 	end
 
 	local value = output:match('AppsUseLightTheme%s+REG_DWORD%s+0x(%d+)')
 
 	if value == nil then
-		return true
+		return nil
 	end
 
 	return (value == '1')
